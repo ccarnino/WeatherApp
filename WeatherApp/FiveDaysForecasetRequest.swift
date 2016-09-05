@@ -12,10 +12,9 @@ import Foundation
 /// Five days forecast api request
 final class FiveDaysForecasetRequest: JsonApiRequest {
     
-    typealias responseType = FiveDaysForecastResponse
     let endpoint = "forecast"
     let method = ApiClient.Method.GET
-    var parameters: [String : Any] {
+    var params: [String : AnyObject]? {
         return ["q": "\(city),\(countryCode)"]
     }
     
@@ -26,6 +25,11 @@ final class FiveDaysForecasetRequest: JsonApiRequest {
     init(city: String, countryCode: String) {
         self.city = city
         self.countryCode = countryCode
+    }
+    
+    
+    func responseWithJson(json: NSDictionary) throws -> ApiResponse {
+        return try FiveDaysForecastResponse(json: json)
     }
     
 }
@@ -41,7 +45,7 @@ final class FiveDaysForecastResponse: ApiResponse {
     
     
     /// Init the response with the json received by the server
-    init(json: [String: Any]) {
+    init(json: NSDictionary) throws {
         
         forecast = []
     }

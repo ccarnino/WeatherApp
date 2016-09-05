@@ -18,14 +18,14 @@ protocol ApiRequest {
     /// Request method
     var method: ApiClient.Method { get }
     
-    /// Request parameters
-    var parameters: [String: Any] { get }
+    /// Request params
+    var params: [String: AnyObject]? { get }
     
     /// Request headers
-    var headers: [String: Any] { get }
+    var headers: [String: String] { get }
     
-//    /// Absolute URL composed by baseURL, endpoint component and parameters
-//    var absoluteURL: NSURL { get }
+    /// Create a response with a given json
+    func responseWithJson(json: NSDictionary) throws -> ApiResponse
     
 }
 
@@ -37,7 +37,7 @@ protocol JsonApiRequest: ApiRequest { }
 
 extension JsonApiRequest {
     
-    var headers: [String: Any] {
+    var headers: [String: String] {
         return ["Content-Type": "application/json"]
     }
     

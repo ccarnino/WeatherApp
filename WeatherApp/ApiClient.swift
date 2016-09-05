@@ -18,7 +18,7 @@ final class ApiClient {
         case Failure(ErrorType?)
     }
     
-    enum Method {
+    enum Method: String {
         case GET
         // Future POST, PUT, DELETE
     }
@@ -45,15 +45,81 @@ final class ApiClient {
         // Now we just execute the the operation using GCD, to keep things simpler, since setting up NSOperationsQueue takes a bit more.
         
         let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-        dispatch_async(backgroundQueue) { 
+        dispatch_async(backgroundQueue) {
             
-            // Perform the request
-            let result: Result = Result.Failure(nil)
+            // Add the api key to the params
+            var allParams = (request.params != nil) ? request.params! : [:]
+            allParams["appid"] = self.apiKey
             
-            // Call completion on the main thread
-            dispatch_async(dispatch_get_main_queue(), {
-                completion(result)
+            let absoluteURL: NSURL
+            switch request.method {
+            case .GET:
+                // Append the params to the URL
+                let partialURL = self.baseURL.URLByAppendingPathComponent(request.endpoint)
+                let urlComponents = NSURLComponents(string: partialURL.absoluteString)!
+                urlComponents.queryItems = []
+                for (key, value) in allParams {
+                    let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+                    urlComponents.queryItems?.append(queryItem)
+                }
+                guard let urlComponentsURL = urlComponents.URL else {
+                    // Call completion on the main thread
+                    dispatch_async(dispatch_get_main_queue(), {
+                        // Failed to parse the json response
+                        completion(.Failure(nil))
+                    })
+                    return
+                }
+                absoluteURL = urlComponentsURL
+                
+//          Future case .POST:
+//                absoluteURL = self.baseURL.URLByAppendingPathComponent(request.endpoint)
+//                urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(params, options: [])
+            }
+            
+            
+            // Create the URL request with the informations we have
+            let urlRequest = NSMutableURLRequest(URL: absoluteURL)
+            urlRequest.allHTTPHeaderFields = request.headers
+            urlRequest.HTTPMethod = request.method.rawValue
+            
+            // Perform the URL request
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(urlRequest, completionHandler: { data, response, error in
+                
+                // Evaluate the response of the request
+                if let error = error {
+                    print(error) // TODO: remove
+                    
+                    // Call completion on the main thread
+                    dispatch_async(dispatch_get_main_queue(), {
+                        // Failed to parse the json response
+                        completion(.Failure(error))
+                    })
+                }
+                
+                guard let data = data,
+                    let json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
+                    let jsonDictionary = json as? NSDictionary,
+                    let apiResponse = try? request.responseWithJson(jsonDictionary) else {
+                    // Call completion on the main thread
+                    dispatch_async(dispatch_get_main_queue(), {
+                        // Failed to parse the json response
+                        completion(.Failure(nil))
+                    })
+                    return
+                }
+                
+                print("Synchronous\(jsonDictionary)") // TODO: remove
+                print(apiResponse)
+                
+                // Call completion on the main thread
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(.Success(apiResponse))
+                })
             })
+            
+            task.resume()
         }
 
     }
