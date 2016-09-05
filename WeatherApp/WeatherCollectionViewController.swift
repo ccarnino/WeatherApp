@@ -109,7 +109,8 @@ extension WeatherCollectionViewController {
         case .Ready(let forecasts):
             let dayForecast = forecasts[indexPath.item]
             let weatherCell = collectionView.dequeueReusableCellWithReuseIdentifier(WeatherCollectionViewCell.reuseIdentifier, forIndexPath: indexPath) as! WeatherCollectionViewCell
-            weatherCell.labelText = dayForecast.shortDescription
+            weatherCell.date = dayForecast.date
+            weatherCell.weatherDescription = dayForecast.shortDescription
             
             // Load the icon asyncronoysly
             dayForecast.fetchIconImage({ iconImage in
@@ -151,7 +152,7 @@ extension WeatherCollectionViewController {
             // Forcing N days per row
             let numberOfDaysPerRow = 5
             let cellWidth = availableWidth / CGFloat(numberOfDaysPerRow)
-            let cellHeight: CGFloat = 115
+            let cellHeight: CGFloat = 160
             return CGSize(width: cellWidth, height: cellHeight)
         }
     }

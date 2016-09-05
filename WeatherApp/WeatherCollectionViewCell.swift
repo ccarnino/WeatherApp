@@ -14,19 +14,41 @@ final class WeatherCollectionViewCell: UICollectionViewCell, ReuseIdentifiable {
     // MARK: - Views
     
     @IBOutlet private var iconImageView: UIImageView!
-    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var dateLabel: UILabel! {
+        didSet {
+            dateLabel.font = UIFont.italicSystemFontOfSize(UIFont.smallSystemFontSize())
+        }
+    }
+    @IBOutlet private var weatherLabel: UILabel! {
+        didSet {
+            dateLabel.font = UIFont.systemFontOfSize(UIFont.smallSystemFontSize())
+        }
+    }
     
     
     // MARK: - Values
+    
+    let dateFormatter: NSDateFormatter = {
+        let dayTimePeriodFormatter = NSDateFormatter()
+        dayTimePeriodFormatter.dateFormat = "EEEE,\nh a"
+        return dayTimePeriodFormatter
+    }()
     
     var iconImage: UIImage? {
         didSet {
             iconImageView.image = iconImage
         }
     }
-    var labelText: String? {
+    var date: NSDate? {
         didSet {
-            titleLabel.text = labelText
+            if let date = date {
+                dateLabel.text = dateFormatter.stringFromDate(date)
+            }
+        }
+    }
+    var weatherDescription: String? {
+        didSet {
+            weatherLabel.text = weatherDescription
         }
     }
     
@@ -36,7 +58,8 @@ final class WeatherCollectionViewCell: UICollectionViewCell, ReuseIdentifiable {
     override func prepareForReuse() {
         super.prepareForReuse()
         iconImageView.image = nil
-        titleLabel.text = nil
+        dateLabel.text = nil
+        weatherLabel.text = nil
     }
     
 }

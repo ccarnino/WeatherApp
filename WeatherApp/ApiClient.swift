@@ -23,6 +23,10 @@ final class ApiClient {
         // Future POST, PUT, DELETE
     }
     
+    enum Error: ErrorType {
+        case ErrorParsingTheResponse
+    }
+    
     /// Api key
     let apiKey: String
     
@@ -89,7 +93,7 @@ final class ApiClient {
                 
                 // Evaluate the response of the request
                 if let error = error {
-                    print(error) // TODO: remove
+                    print(error)
                     
                     // Call completion on the main thread
                     dispatch_async(dispatch_get_main_queue(), {
@@ -100,7 +104,7 @@ final class ApiClient {
                 
                 guard let data = data,
                     let json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
-                    let jsonDictionary = json as? NSDictionary,
+                    let jsonDictionary = json as? [NSObject: AnyObject],
                     let apiResponse = try? request.responseWithJson(jsonDictionary) else {
                     // Call completion on the main thread
                     dispatch_async(dispatch_get_main_queue(), {
@@ -110,9 +114,6 @@ final class ApiClient {
                     return
                 }
                 
-                print("Synchronous\(jsonDictionary)") // TODO: remove
-                print(apiResponse)
-                
                 // Call completion on the main thread
                 dispatch_async(dispatch_get_main_queue(), {
                     completion(.Success(apiResponse))
@@ -121,7 +122,6 @@ final class ApiClient {
             
             task.resume()
         }
-
     }
     
 }

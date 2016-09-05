@@ -28,7 +28,7 @@ final class FiveDaysForecasetRequest: JsonApiRequest {
     }
     
     
-    func responseWithJson(json: NSDictionary) throws -> ApiResponse {
+    func responseWithJson(json: [NSObject: AnyObject]) throws -> ApiResponse {
         return try FiveDaysForecastResponse(json: json)
     }
     
@@ -36,8 +36,6 @@ final class FiveDaysForecasetRequest: JsonApiRequest {
 
 
 /// Five days forecast api response
-
-
 final class FiveDaysForecastResponse: ApiResponse {
     
     /// The data structure containing the forecast
@@ -45,9 +43,31 @@ final class FiveDaysForecastResponse: ApiResponse {
     
     
     /// Init the response with the json received by the server
-    init(json: NSDictionary) throws {
+    init(json: [NSObject: AnyObject]) throws {
         
-        forecast = []
+        guard let list = json["list"] as? [[NSObject: AnyObject]] else {
+            throw ApiClient.Error.ErrorParsingTheResponse
+        }
+        
+        var forecast = [DayForecast]()
+        
+        // Loop over the days in the forcast
+        for listItem in list {
+            guard let dateTimeinterval = listItem["dt"] as? NSTimeInterval,
+                let weatherInfos = listItem["weather"] as? [AnyObject],
+                let weatherInfo = weatherInfos.first as? [String: AnyObject],
+                let shortDescription = weatherInfo["main"] as? String,
+                let iconCode = weatherInfo["icon"] as? String else {
+                    throw ApiClient.Error.ErrorParsingTheResponse
+            }
+            
+            let date = NSDate(timeIntervalSince1970: dateTimeinterval)
+            let dayForecast = DayForecast(date: date, shortDescription: shortDescription, iconCode: iconCode)
+            forecast.append(dayForecast)
+        }
+        
+        // Save the parsed forcast
+        self.forecast = forecast
     }
     
 }

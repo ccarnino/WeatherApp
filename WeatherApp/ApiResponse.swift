@@ -12,6 +12,6 @@ import Foundation
 /// Generic api response
 protocol ApiResponse {
     
-    // For now no common properties
+    init(json: [NSObject: AnyObject]) throws
     
 }

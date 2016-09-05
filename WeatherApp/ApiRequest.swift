@@ -25,7 +25,7 @@ protocol ApiRequest {
     var headers: [String: String] { get }
     
     /// Create a response with a given json
-    func responseWithJson(json: NSDictionary) throws -> ApiResponse
+    func responseWithJson(json: [NSObject: AnyObject]) throws -> ApiResponse
     
 }
 

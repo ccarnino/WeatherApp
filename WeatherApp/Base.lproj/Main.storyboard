@@ -14,8 +14,8 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="7WM-R7-Y93">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.94117647059999998" green="0.97647058819999999" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cl9-GQ-cG4">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cl9-GQ-cG4">
                             <size key="itemSize" width="69" height="116"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -23,10 +23,10 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WeatherCollectionViewCell" id="tdG-Ie-XJ8" customClass="WeatherCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="69" height="116"/>
+                                <rect key="frame" x="0.0" y="0.0" width="69" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="69" height="116"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="69" height="144"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CrA-Tv-vDf">
@@ -35,8 +35,14 @@
                                                 <constraint firstAttribute="width" secondItem="CrA-Tv-vDf" secondAttribute="height" multiplier="1:1" id="bm1-CK-mxr"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMg-8p-PEb">
-                                            <rect key="frame" x="8" y="75" width="53" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="wMg-8p-PEb">
+                                            <rect key="frame" x="8" y="69" width="53" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="desc" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipt-eX-Uvp">
+                                            <rect key="frame" x="8" y="97" width="53" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -45,26 +51,31 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="ipt-eX-Uvp" firstAttribute="leading" secondItem="tdG-Ie-XJ8" secondAttribute="leadingMargin" id="BfX-59-Lfh"/>
                                     <constraint firstAttribute="trailing" secondItem="CrA-Tv-vDf" secondAttribute="trailing" id="CG1-pK-6PS"/>
-                                    <constraint firstItem="wMg-8p-PEb" firstAttribute="top" secondItem="CrA-Tv-vDf" secondAttribute="bottom" constant="6" id="PDi-Dv-8se"/>
+                                    <constraint firstItem="ipt-eX-Uvp" firstAttribute="trailing" secondItem="tdG-Ie-XJ8" secondAttribute="trailingMargin" id="Ix2-xl-l99"/>
+                                    <constraint firstItem="wMg-8p-PEb" firstAttribute="top" secondItem="CrA-Tv-vDf" secondAttribute="bottom" id="PDi-Dv-8se"/>
                                     <constraint firstItem="wMg-8p-PEb" firstAttribute="trailing" secondItem="tdG-Ie-XJ8" secondAttribute="trailingMargin" id="TPh-rl-xvz"/>
                                     <constraint firstItem="CrA-Tv-vDf" firstAttribute="leading" secondItem="tdG-Ie-XJ8" secondAttribute="leading" id="VsY-Mo-tYx"/>
                                     <constraint firstItem="CrA-Tv-vDf" firstAttribute="top" secondItem="tdG-Ie-XJ8" secondAttribute="top" id="Zn6-Iz-I1V"/>
+                                    <constraint firstItem="ipt-eX-Uvp" firstAttribute="top" secondItem="wMg-8p-PEb" secondAttribute="bottom" constant="7" id="c4t-NN-UMF"/>
                                     <constraint firstItem="wMg-8p-PEb" firstAttribute="leading" secondItem="tdG-Ie-XJ8" secondAttribute="leadingMargin" id="fKB-zq-sRa"/>
                                 </constraints>
+                                <size key="customSize" width="69" height="144"/>
                                 <connections>
+                                    <outlet property="dateLabel" destination="wMg-8p-PEb" id="MgI-8s-FUT"/>
                                     <outlet property="iconImageView" destination="CrA-Tv-vDf" id="g6m-wf-9lC"/>
-                                    <outlet property="titleLabel" destination="wMg-8p-PEb" id="15J-Ab-dJo"/>
+                                    <outlet property="weatherLabel" destination="ipt-eX-Uvp" id="g3j-su-OfN"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCollectionViewCell" id="Ln9-cY-tgD" customClass="MessageCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
-                                <rect key="frame" x="79" y="0.0" width="196" height="116"/>
+                                <rect key="frame" x="69" y="14" width="196" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="196" height="116"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FjP-1G-FiS">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FjP-1G-FiS">
                                             <rect key="frame" x="8" y="8" width="180" height="100"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
