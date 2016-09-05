@@ -14,6 +14,13 @@
 		CA1371931D7D61EF003F33D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA1371911D7D61EF003F33D5 /* LaunchScreen.storyboard */; };
 		CA13719D1D7D646A003F33D5 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA13719C1D7D646A003F33D5 /* ApiClient.swift */; };
 		CA13719F1D7D64D2003F33D5 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA13719E1D7D64D2003F33D5 /* ApiRequest.swift */; };
+		CA1371A11D7D6B3F003F33D5 /* FiveDaysForecasetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1371A01D7D6B3F003F33D5 /* FiveDaysForecasetRequest.swift */; };
+		CA1371A41D7D6B87003F33D5 /* DayForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1371A31D7D6B87003F33D5 /* DayForecast.swift */; };
+		CA1371A61D7D6F90003F33D5 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1371A51D7D6F90003F33D5 /* ApiResponse.swift */; };
+		CA1371A91D7D75F2003F33D5 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1371A81D7D75F2003F33D5 /* WeatherCollectionViewCell.swift */; };
+		CA1371AB1D7D768C003F33D5 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1371AA1D7D768C003F33D5 /* ReuseIdentifiable.swift */; };
+		CA1371AD1D7D780D003F33D5 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1371AC1D7D780D003F33D5 /* MessageCollectionViewCell.swift */; };
+		CA1371AF1D7D7E37003F33D5 /* DayForecast+IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1371AE1D7D7E37003F33D5 /* DayForecast+IconImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,13 @@
 		CA1371941D7D61EF003F33D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA13719C1D7D646A003F33D5 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		CA13719E1D7D64D2003F33D5 /* ApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		CA1371A01D7D6B3F003F33D5 /* FiveDaysForecasetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveDaysForecasetRequest.swift; sourceTree = "<group>"; };
+		CA1371A31D7D6B87003F33D5 /* DayForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayForecast.swift; sourceTree = "<group>"; };
+		CA1371A51D7D6F90003F33D5 /* ApiResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
+		CA1371A81D7D75F2003F33D5 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		CA1371AA1D7D768C003F33D5 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
+		CA1371AC1D7D780D003F33D5 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		CA1371AE1D7D7E37003F33D5 /* DayForecast+IconImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DayForecast+IconImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +74,7 @@
 			children = (
 				CA13719A1D7D644E003F33D5 /* Model */,
 				CA1371881D7D61EF003F33D5 /* AppDelegate.swift */,
-				CA13718A1D7D61EF003F33D5 /* WeatherCollectionViewController.swift */,
+				CA1371A71D7D75DA003F33D5 /* WeatherController */,
 				CA13718C1D7D61EF003F33D5 /* Main.storyboard */,
 				CA13718F1D7D61EF003F33D5 /* Assets.xcassets */,
 				CA1371911D7D61EF003F33D5 /* LaunchScreen.storyboard */,
@@ -72,10 +86,33 @@
 		CA13719A1D7D644E003F33D5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CA13719C1D7D646A003F33D5 /* ApiClient.swift */,
-				CA13719E1D7D64D2003F33D5 /* ApiRequest.swift */,
+				CA1371A21D7D6B72003F33D5 /* Networking */,
+				CA1371A31D7D6B87003F33D5 /* DayForecast.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		CA1371A21D7D6B72003F33D5 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CA13719C1D7D646A003F33D5 /* ApiClient.swift */,
+				CA13719E1D7D64D2003F33D5 /* ApiRequest.swift */,
+				CA1371A51D7D6F90003F33D5 /* ApiResponse.swift */,
+				CA1371A01D7D6B3F003F33D5 /* FiveDaysForecasetRequest.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		CA1371A71D7D75DA003F33D5 /* WeatherController */ = {
+			isa = PBXGroup;
+			children = (
+				CA13718A1D7D61EF003F33D5 /* WeatherCollectionViewController.swift */,
+				CA1371A81D7D75F2003F33D5 /* WeatherCollectionViewCell.swift */,
+				CA1371AC1D7D780D003F33D5 /* MessageCollectionViewCell.swift */,
+				CA1371AA1D7D768C003F33D5 /* ReuseIdentifiable.swift */,
+				CA1371AE1D7D7E37003F33D5 /* DayForecast+IconImage.swift */,
+			);
+			name = WeatherController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,9 +187,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA13718B1D7D61EF003F33D5 /* WeatherCollectionViewController.swift in Sources */,
+				CA1371A91D7D75F2003F33D5 /* WeatherCollectionViewCell.swift in Sources */,
 				CA1371891D7D61EF003F33D5 /* AppDelegate.swift in Sources */,
+				CA1371A11D7D6B3F003F33D5 /* FiveDaysForecasetRequest.swift in Sources */,
+				CA1371AB1D7D768C003F33D5 /* ReuseIdentifiable.swift in Sources */,
+				CA1371A61D7D6F90003F33D5 /* ApiResponse.swift in Sources */,
+				CA1371AD1D7D780D003F33D5 /* MessageCollectionViewCell.swift in Sources */,
 				CA13719F1D7D64D2003F33D5 /* ApiRequest.swift in Sources */,
+				CA1371AF1D7D7E37003F33D5 /* DayForecast+IconImage.swift in Sources */,
 				CA13719D1D7D646A003F33D5 /* ApiClient.swift in Sources */,
+				CA1371A41D7D6B87003F33D5 /* DayForecast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

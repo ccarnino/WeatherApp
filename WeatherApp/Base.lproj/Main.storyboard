@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Weather Collection View Controller-->
@@ -12,21 +14,75 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="7WM-R7-Y93">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.97647058819999999" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cl9-GQ-cG4">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="69" height="116"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tdG-Ie-XJ8">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WeatherCollectionViewCell" id="tdG-Ie-XJ8" customClass="WeatherCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="69" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="69" height="116"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CrA-Tv-vDf">
+                                            <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="CrA-Tv-vDf" secondAttribute="height" multiplier="1:1" id="bm1-CK-mxr"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMg-8p-PEb">
+                                            <rect key="frame" x="8" y="75" width="53" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="CrA-Tv-vDf" secondAttribute="trailing" id="CG1-pK-6PS"/>
+                                    <constraint firstItem="wMg-8p-PEb" firstAttribute="top" secondItem="CrA-Tv-vDf" secondAttribute="bottom" constant="6" id="PDi-Dv-8se"/>
+                                    <constraint firstItem="wMg-8p-PEb" firstAttribute="trailing" secondItem="tdG-Ie-XJ8" secondAttribute="trailingMargin" id="TPh-rl-xvz"/>
+                                    <constraint firstItem="CrA-Tv-vDf" firstAttribute="leading" secondItem="tdG-Ie-XJ8" secondAttribute="leading" id="VsY-Mo-tYx"/>
+                                    <constraint firstItem="CrA-Tv-vDf" firstAttribute="top" secondItem="tdG-Ie-XJ8" secondAttribute="top" id="Zn6-Iz-I1V"/>
+                                    <constraint firstItem="wMg-8p-PEb" firstAttribute="leading" secondItem="tdG-Ie-XJ8" secondAttribute="leadingMargin" id="fKB-zq-sRa"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="iconImageView" destination="CrA-Tv-vDf" id="g6m-wf-9lC"/>
+                                    <outlet property="titleLabel" destination="wMg-8p-PEb" id="15J-Ab-dJo"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCollectionViewCell" id="Ln9-cY-tgD" customClass="MessageCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="79" y="0.0" width="196" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="196" height="116"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FjP-1G-FiS">
+                                            <rect key="frame" x="8" y="8" width="180" height="100"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="FjP-1G-FiS" firstAttribute="bottom" secondItem="Ln9-cY-tgD" secondAttribute="bottomMargin" id="2GC-Gc-Lod"/>
+                                    <constraint firstItem="FjP-1G-FiS" firstAttribute="top" secondItem="Ln9-cY-tgD" secondAttribute="topMargin" id="AVl-Yh-h5V"/>
+                                    <constraint firstItem="FjP-1G-FiS" firstAttribute="leading" secondItem="Ln9-cY-tgD" secondAttribute="leadingMargin" id="EK8-PX-dgd"/>
+                                    <constraint firstItem="FjP-1G-FiS" firstAttribute="trailing" secondItem="Ln9-cY-tgD" secondAttribute="trailingMargin" id="nMc-z4-6vT"/>
+                                </constraints>
+                                <size key="customSize" width="196" height="116"/>
+                                <connections>
+                                    <outlet property="titleLabel" destination="FjP-1G-FiS" id="gTI-pG-T5Z"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

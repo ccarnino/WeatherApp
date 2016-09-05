@@ -12,19 +12,50 @@ import Foundation
 // It should not be subclassed
 final class ApiClient {
     
+    /// Api request result
+    enum Result {
+        case Success(ApiResponse)
+        case Failure(ErrorType?)
+    }
+    
+    enum Method {
+        case GET
+        // Future POST, PUT, DELETE
+    }
+    
+    /// Api key
+    let apiKey: String
+    
     /// Base url of the backend
     let baseURL: NSURL
     
     
     /// Initialize
-    init(baseURL: NSURL) {
+    init(apiKey: String, baseURL: NSURL) {
+        self.apiKey = apiKey
         self.baseURL = baseURL
     }
     
     
     /// Add and process an api request
-    func addRequest(request: ApiRequest, completion: Void) {
+    func addRequest(request: ApiRequest, completion: (Result -> Void)) {
         
+        // Note: In a real application, we would have a NSOperationQueue to which we append the request (which would wrapped inside a NSOperation).
+        // The operation then would be processed depending the rules and priorities we set on the queue and its operations
+        // Now we just execute the the operation using GCD, to keep things simpler, since setting up NSOperationsQueue takes a bit more.
+        
+        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+        dispatch_async(backgroundQueue) { 
+            
+            // Perform the request
+            let result: Result = Result.Failure(nil)
+            
+            // Call completion on the main thread
+            dispatch_async(dispatch_get_main_queue(), {
+                completion(result)
+            })
+        }
+
     }
     
 }
