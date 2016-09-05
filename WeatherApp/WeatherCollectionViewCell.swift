@@ -14,23 +14,15 @@ final class WeatherCollectionViewCell: UICollectionViewCell, ReuseIdentifiable {
     // MARK: - Views
     
     @IBOutlet private var iconImageView: UIImageView!
-    @IBOutlet private var dateLabel: UILabel! {
-        didSet {
-            dateLabel.font = UIFont.italicSystemFontOfSize(UIFont.smallSystemFontSize())
-        }
-    }
-    @IBOutlet private var weatherLabel: UILabel! {
-        didSet {
-            dateLabel.font = UIFont.systemFontOfSize(UIFont.smallSystemFontSize())
-        }
-    }
+    @IBOutlet private var dateLabel: UILabel!
+    @IBOutlet private var weatherLabel: UILabel!
     
     
     // MARK: - Values
     
     let dateFormatter: NSDateFormatter = {
         let dayTimePeriodFormatter = NSDateFormatter()
-        dayTimePeriodFormatter.dateFormat = "EEEE,\nh a"
+        dayTimePeriodFormatter.dateFormat = "EEEE\nh a"
         return dayTimePeriodFormatter
     }()
     

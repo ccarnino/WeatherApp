@@ -4,7 +4,7 @@
 The app is divided in 3 layers:
 
 - Model
-	- Networking (ApiClient, Request, Response)
+	- Networking (ApiClient, ApiRequest, ApiResponse)
 	- Data structures (DayForecast)
 - Controller (WeatherCollectionViewController)
 - View (Main.storyboard)
@@ -24,6 +24,7 @@ In this case the `refreshView` just reload the collection view, but it would be 
 
 ## Notes
 - A collection view is used to display the weather because it is perfect for horizontal display of informations. It also adapts better to different screens sizes than a table view. So it will be better for iPad.
+- There are 5 forecasts per day. So  we are displaying all the forecasts of a day per row. Right now this logic is hardcoded, but this is not what should be in production. The forecasts should be parsed, grouped by day and ordered programmatically.
 
 
 ## Author
